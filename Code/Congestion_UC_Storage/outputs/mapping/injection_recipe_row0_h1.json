@@ -1,0 +1,67 @@
+{
+  "origin_time": "2018-12-01 00:00:00",
+  "horizon_hours": 1,
+  "ignore_feeders": true,
+  "profiles": {
+    "load_power_mean": 0.7788043013529005,
+    "load_power_U": 0.8763262361080253,
+    "load_power_L": 0.6812823665977756,
+    "wind_power_mean": 0.0018004266630522,
+    "solar_power_mean": 0.0
+  },
+  "machines": {
+    "3018": {
+      "p_mw": 0.23405546619678602,
+      "note": "cosim.change_wind style: profile * wind_mw_base"
+    }
+  },
+  "load_scale_by_bus": {
+    "153": {
+      "scale_mean": 0.7788043013529005,
+      "scale_U": 0.8763262361080253,
+      "scale_L": 0.6812823665977756,
+      "note": "P_new = P_base * scale; same idea as cosim.change_load"
+    },
+    "154": {
+      "scale_mean": 0.7788043013529005,
+      "scale_U": 0.8763262361080253,
+      "scale_L": 0.6812823665977756,
+      "note": "P_new = P_base * scale; same idea as cosim.change_load"
+    },
+    "203": {
+      "scale_mean": 0.7788043013529005,
+      "scale_U": 0.8763262361080253,
+      "scale_L": 0.6812823665977756,
+      "note": "P_new = P_base * scale; same idea as cosim.change_load"
+    },
+    "205": {
+      "scale_mean": 0.7788043013529005,
+      "scale_U": 0.8763262361080253,
+      "scale_L": 0.6812823665977756,
+      "note": "P_new = P_base * scale; same idea as cosim.change_load"
+    },
+    "3005": {
+      "scale_mean": 0.7788043013529005,
+      "scale_U": 0.8763262361080253,
+      "scale_L": 0.6812823665977756,
+      "note": "P_new = P_base * scale; same idea as cosim.change_load"
+    },
+    "3007": {
+      "scale_mean": 0.7788043013529005,
+      "scale_U": 0.8763262361080253,
+      "scale_L": 0.6812823665977756,
+      "note": "P_new = P_base * scale; same idea as cosim.change_load"
+    },
+    "3008": {
+      "scale_mean": 0.7788043013529005,
+      "scale_U": 0.8763262361080253,
+      "scale_L": 0.6812823665977756,
+      "note": "P_new = P_base * scale; same idea as cosim.change_load"
+    }
+  },
+  "solar_placeholder": {
+    "policy": "reduce_net_load_at_3005_3008_by_solar_mean_fraction",
+    "solar_mean": 0.0,
+    "note": "Without feeders/OpenDSS, solar is not injected at 671. v1 placeholder: treat solar as a zonal reduction of loads at 3005/3008 when applying the map in pandapower."
+  }
+}

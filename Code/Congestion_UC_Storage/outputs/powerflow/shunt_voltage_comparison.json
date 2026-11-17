@@ -1,0 +1,50 @@
+{
+  "question": "Do RAW fixed capacitors/reactors raise vm_pu on stressed buses?",
+  "focus_buses": [
+    154,
+    203,
+    205,
+    3008
+  ],
+  "v1_no_shunts": {
+    "154": 0.8820724151252423,
+    "203": 0.8507067403909128,
+    "205": 0.8963023482947649,
+    "3008": 0.9200102688558048
+  },
+  "v2_with_shunts": {
+    "154": 0.948150898568655,
+    "203": 0.928052295900773,
+    "205": 0.9593651653528728,
+    "3008": 0.9571775051666807
+  },
+  "delta_vm_pu_v2_minus_v1": {
+    "154": 0.06607848344341272,
+    "203": 0.07734555550986022,
+    "205": 0.0630628170581079,
+    "3008": 0.03716723631087582
+  },
+  "shunts_added": {
+    "151": {
+      "BL_mvar_raw": -600.0,
+      "type": "reactor"
+    },
+    "154": {
+      "BL_mvar_raw": 300.0,
+      "type": "capacitor"
+    },
+    "201": {
+      "BL_mvar_raw": 300.0,
+      "type": "capacitor"
+    },
+    "203": {
+      "BL_mvar_raw": 50.0,
+      "type": "capacitor"
+    },
+    "205": {
+      "BL_mvar_raw": 300.0,
+      "type": "capacitor"
+    }
+  },
+  "note": "3008 has no shunt in RAW; any vm change there is indirect from caps on 154/203/205 (and reactor on 151)."
+}

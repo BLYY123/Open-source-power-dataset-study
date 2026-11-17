@@ -1,0 +1,54 @@
+{
+  "status": "ok",
+  "version": "v2",
+  "include_shunts": true,
+  "shunts_modeled": {
+    "151": -600.0,
+    "154": 300.0,
+    "201": 300.0,
+    "203": 50.0,
+    "205": 300.0
+  },
+  "solver": "pandapower.runpp",
+  "network": "simplified SAVNW-like (+151,+201; with fixed shunts; T only)",
+  "recipe_path": "outputs/mapping/injection_recipe_row0_h1.json",
+  "origin_time": "2018-12-01 00:00:00",
+  "horizon_hours": 1,
+  "converged": true,
+  "error": null,
+  "dispatch": {
+    "scale": 0.7788043013529005,
+    "solar_mean": 0.0,
+    "wind_mw": 0.23405546619678602,
+    "p_load_mw": 1735.1759834142622,
+    "pg_total_conventional_mw": 1734.9419279480653,
+    "gen_targets_mw": {
+      "101": 345.071322685803,
+      "102": 345.071322685803,
+      "206": 383.41258076200336,
+      "211": 277.97412105245246,
+      "3011": 383.41258076200336
+    },
+    "trad_gen_pct": [
+      9.0,
+      9.0,
+      10.0,
+      7.25,
+      10.0
+    ]
+  },
+  "res_bus_csv": "outputs/powerflow/v2/res_bus.csv",
+  "res_line_csv": "outputs/powerflow/v2/res_line.csv",
+  "n_buses": 15,
+  "n_lines": 17,
+  "n_shunts": 5,
+  "vm_pu_min": 0.928052295900773,
+  "vm_pu_max": 1.04,
+  "loading_percent_max": 155.4820465134322,
+  "focus_vm_pu": {
+    "154": 0.948150898568655,
+    "203": 0.928052295900773,
+    "205": 0.9593651653528728,
+    "3008": 0.9571775051666807
+  }
+}

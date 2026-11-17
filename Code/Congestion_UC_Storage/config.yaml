@@ -1,0 +1,61 @@
+# Learning pipeline config — Congestion_UC_Storage
+# Paths are relative to this folder unless absolute.
+
+data:
+  # Raw PSML zone file (actuals). Forecasting does NOT need processed_dataset/.
+  zone_csv: ../../PSML/Minute-level Load and Renewable/CAISO_zone_1_.csv
+  # Optional: keep one calendar year to keep the demo light (null = all years).
+  year: 2018
+  # Resample minute data to this frequency before forecasting (demo speed).
+  resample_rule: "1h"
+
+forecast:
+  # Same spirit as LoadForecasting naive: y_hat(t+h) = y(t)
+  method: persistence
+  # Horizons in hours (after resample). Load ops analogy: 1h short-term, 24h day-ahead.
+  horizons_hours: [1, 24]
+  targets: [load_power, wind_power, solar_power]
+  # Train = Jan–Nov of `year`, test = December (matches PSML forecasting split idea).
+  # If year is null, use last `test_fraction` of the series as test.
+  test_fraction: 0.1
+  prediction_interval: 0.95
+  # z for Gaussian-ish intervals (0.95 -> 1.96); mirrors LoadForecasting utils.
+  interval_z: 1.96
+
+mapping:
+  # Reference RAW (bases / bus IDs). We do NOT run PSS/E; pandapower uses a
+  # simplified SAVNW-like net with the same named load/gen buses.
+  savnw_raw: ../Joint Simulation/case_T/Re_wind_v3/savnw_wind_scale_down.raw
+  wind_bus: 3018
+  wind_mw_base: 130.0
+  # Ignore OpenDSS IEEE-13 feeders; keep 3005/3008 as ordinary T loads.
+  ignore_feeders: true
+
+powerflow:
+  # Overload flag threshold used in decision metrics (%).
+  loading_alert_percent: 100.0
+  voltage_pu_min: 0.95
+  voltage_pu_max: 1.05
+  # Used only when run_both_shunt_versions is false (single-version run).
+  include_shunts: false
+  # Prefer true: write powerflow/v1 and powerflow/v2; decisions runs on each.
+  run_both_shunt_versions: true
+
+decisions:
+  # Toy storage heuristic (± MW).
+  storage_mw: 50.0
+  # Charge when residual load−wind is below this (teaching threshold).
+  storage_net_load_charge_below_mw: 1500.0
+  # Same weights as cosim.get_dispatch (documented; applied in Step 3).
+  trad_gen_bus: [101, 102, 206, 211, 3011]
+  trad_gen_pct: [9.0, 9.0, 10.0, 7.25, 10.0]
+
+outputs:
+  dir: ./outputs
+  forecasts_subdir: forecasts
+  mapping_subdir: mapping
+  powerflow_subdir: powerflow
+  decisions_subdir: decisions
+
+logging:
+  verbose: true
